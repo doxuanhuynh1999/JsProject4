@@ -11,8 +11,26 @@ $(document).ready(function(){
     // Search Method
     function search() {
         $("#loadingIcon").css("display","");
+    // date
+        
+        let dateStartValue = document.getElementById("dateStart").value;
+        let dateStart;      
+        if (dateStartValue != "") {
+            dateStart = new Date(dateStartValue).toISOString();          
+            dateStart = dateStart.slice(0,11)+"00:00:00Z";                    
+        } else {
+            dateStart=``;
+        }
+        let dateEndValue = document.getElementById("dateEnd").value;
+        let dateEnd;
+        if (dateEndValue!="") {
+            dateEnd = new Date(dateEndValue).toISOString();
+            dateEnd = dateEnd.slice(0,11)+"23:59:59Z";         
+        } else {
+            dateEnd=``;
+        }       
         let content = document.getElementById("searchContent").value;
-        let link = `https://gnews.io/api/v4/search?q=${content}&lang=en&sortby=publishedAt&token=5c36b3bf4d495d94f65a994727f5052e
+        let link = `https://gnews.io/api/v4/search?q=${content}&lang=en&from=${dateStart}&to=${dateEnd}&sortby=publishedAt&token=5c36b3bf4d495d94f65a994727f5052e
 
         `;
         getInformation(renderInformation,link);

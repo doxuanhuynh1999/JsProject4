@@ -16,6 +16,9 @@
     justify-content: center;
     display: flex;
 }
+.date{
+    margin-top: 10px;
+}
 .img{
     width: 100%;
     height: auto;
